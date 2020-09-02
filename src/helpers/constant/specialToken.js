@@ -1,0 +1,17 @@
+exports.SPECIAL_TOKEN = {
+  VARIABLE_ID_BEGIN: "v",
+  VARIABLE_ID_SECOND: "a",
+  VARIABLE_ID_END: "r",
+  GREATER_THAN: ">",
+  LESS_THAN: "<",
+  ASSIGNMENT: "=",
+  PLUS: "+",
+  MINUS: "-",
+  STAR: "*",
+  SLASH: "/",
+  SEMICOLIN: ",",
+  LEFT_PAREN: "(",
+  RIGHT_PAREN: ")",
+  DOLLAR_SIGN: "$",
+  UNDER_LINE: "_",
+};
