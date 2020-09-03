@@ -8,49 +8,16 @@
 // 1、加减乘除运算；
 // 2、大小比较；
 
-const { EmDfaState } = require("./enum/dfaState");
-const { EmTokenType } = require("./enum/tokenType");
+const { prototypeMixin } = require("./instance/prototype");
 
 function SimpleLexer(sourceCode) {
-  this.$source = sourceCode;
+  if (!this instanceof SimpleLexer) {
+    throw new Error("error");
+  }
 
-  this.tokenList = [];
-  this.token = { type: "", value: "" };
-  this.tokenValue = "";
+  this._init(sourceCode);
 }
 
-SimpleLexer.prototype.initToken = function (char) {};
-
-SimpleLexer.prototype.tokenize = function (sourceCode) {
-  let state = EmDfaState.Initial;
-
-  for (let char of sourceCode) {
-    switch (state) {
-      case EmDfaState.Initial:
-        state = this.initToken(char);
-        break;
-      case EmDfaState.Identifier:
-        break;
-      case EmDfaState.Number:
-        break;
-      case EmDfaState.GT:
-        break;
-      case EmDfaState.EQ:
-        break;
-      case EmDfaState.GE:
-        break;
-      case EmDfaState.Plus:
-        break;
-      case EmDfaState.Minus:
-        break;
-      case EmDfaState.Multiply:
-        break;
-      case EmDfaState.Divide:
-        break;
-      default:
-      // code...
-    }
-  }
-};
+prototypeMixin(SimpleLexer);
 
 module.exports = SimpleLexer;
