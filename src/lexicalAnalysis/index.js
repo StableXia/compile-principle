@@ -8,16 +8,20 @@
 // 1、加减乘除运算；
 // 2、大小比较；
 
-const { prototypeMixin } = require("./instance/prototype");
+const { prototypeMixin, initMixin } = require("./instance");
 
 function SimpleLexer(sourceCode) {
   if (!this instanceof SimpleLexer) {
-    throw new Error("error");
+    throw new Error("SimpleLexer 不能作为方法直接调用，请使用 new 关键字");
   }
 
   this._init(sourceCode);
 }
 
+initMixin(SimpleLexer);
 prototypeMixin(SimpleLexer);
 
-module.exports = SimpleLexer;
+// module.exports = SimpleLexer;
+
+const test = new SimpleLexer("1 + 1");
+console.log(test);

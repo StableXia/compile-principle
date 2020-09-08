@@ -1,4 +1,6 @@
-const { SPECIAL_TOKEN } = require("../constant/specialToken");
+const { SPECIAL_TOKEN } = require("../constant");
+
+exports.isIdentifier = (char) => /[a-zA-Z_]/.test(char);
 
 exports.isDigit = (char) => /\d/.test(char);
 
