@@ -12,7 +12,7 @@ const { prototypeMixin, initMixin } = require("./instance");
 
 function SimpleLexer(sourceCode) {
   if (!this instanceof SimpleLexer) {
-    throw new Error("SimpleLexer 不能作为方法直接调用，请使用 new 关键字");
+    console.error("SimpleLexer 不能作为方法直接调用，请使用 new 关键字");
   }
 
   this._init(sourceCode);
@@ -21,7 +21,4 @@ function SimpleLexer(sourceCode) {
 initMixin(SimpleLexer);
 prototypeMixin(SimpleLexer);
 
-// module.exports = SimpleLexer;
-
-const test = new SimpleLexer("1 + 1");
-console.log(test);
+module.exports = SimpleLexer;

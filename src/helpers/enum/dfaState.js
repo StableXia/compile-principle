@@ -1,23 +1,23 @@
 // 有限自动机状态
 exports.EmDfaState = {
   // 初始化
-  Initial: 0,
+  Initial: "Initial",
   // 标识符
-  Identifier: 1,
+  Identifier: "Identifier",
   // 数字字面量
-  Number: 2,
+  Number: "Number",
   // >
-  GT: 3,
+  GT: "GT",
   // >=
-  GE: 4,
+  GE: "GE",
   // =
-  EQ: 5,
+  EQ: "EQ",
   // +
-  Plus: 6,
+  Plus: "Plus",
   // -
-  Minus: 7,
+  Minus: "Minus",
   // *
-  Multiply: 8,
+  Multiply: "Multiply",
   // /
-  Divide: 9,
+  Divide: "Divide",
 };

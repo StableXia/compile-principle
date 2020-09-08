@@ -1,0 +1,26 @@
+{
+  "name": "compile-principle",
+  "version": "1.0.0",
+  "description": "走进编译原理",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaotangdou/compile-principle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaotangdou/compile-principle/issues"
+  },
+  "homepage": "https://github.com/xiaotangdou/compile-principle#readme",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}

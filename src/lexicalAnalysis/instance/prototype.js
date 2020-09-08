@@ -7,54 +7,52 @@ const prototypeMap = {
    * 对源代码进行分词生成token列表
    * @param {string} sourceCode - 要解析的源代码
    */
-  tokenize(sourceCode) {
+  _tokenize(sourceCode) {
     for (let char of sourceCode) {
       switch (this._state) {
         case EmDfaState.Initial:
-          this.initToken(char);
+          this._initToken(char);
           break;
         case EmDfaState.Identifier:
-          if (isIdentifier(char) || isDigit(char)) {
+          if (isIdentifier(char)) {
             this._token.value += char;
           } else {
-            this.initToken(char);
+            this._initToken(char);
           }
           break;
         case EmDfaState.Number:
           if (isDigit(char)) {
             this._token.value += char;
           } else {
-            this.initToken(char);
+            this._initToken(char);
           }
           break;
         case EmDfaState.GT:
           if (char === "=") {
             this._token.value += char;
-            this._token.value = EmTokenType.GE;
-            state = EmDfaState.GE;
+            this._token.type = EmTokenType.GE;
+            this._state = EmDfaState.GE;
           } else {
-            this.initToken(char);
+            this._initToken(char);
           }
           break;
-        // 其余没有匹配自动机的字符，直接开始下一个初始化字符
         default:
-          this.initToken(char);
+          this._initToken(char);
       }
     }
   },
 
-  initToken(char) {
+  _saveToken() {
     if (this._state !== EmDfaState.Initial) {
       this._tokenList.push(this._token);
     }
+  },
 
-    if (char === " ") {
-      this._state = EmDfaState.Initial;
-      this._token = new SimpleToken();
-      return;
-    }
+  _initToken(char) {
+    this._saveToken();
 
-    this._token.value = char;
+    this._state = EmDfaState.Initial;
+    this._token = new SimpleToken({ value: char });
 
     if (isIdentifier(char)) {
       this._state = EmDfaState.Identifier;
@@ -81,8 +79,13 @@ const prototypeMap = {
       this._state = EmDfaState.Divide;
       this._token.type = EmTokenType.Divide;
     } else {
-      throw new Error(`不合法的 token: '${char}'`);
+      // TODO: 未识别字符处理
+      // console.error(`不合法的 token: '${char}'`);
     }
+  },
+
+  getTokenList() {
+    return this._tokenList;
   },
 };
 
@@ -100,6 +103,7 @@ exports.initMixin = function (SimpleLexer) {
     vm._token = new SimpleToken();
     vm._state = EmDfaState.Initial;
 
-    vm.tokenize(sourceCode);
+    const tempSourceCode = sourceCode + " ";
+    vm._tokenize(tempSourceCode);
   };
 };
